@@ -23,6 +23,7 @@ var _monster_anim_timer := 0.0
 enum CellKind {FLOOR, WALL, MONSTER, ITEM, STAIRS}
 
 var map = [] # 2D array [x][y] -> dictionary describing the cell
+var map_level = 0
 
 var player = {
 	"pos": Vector2(),
@@ -56,12 +57,6 @@ func _process(delta: float) -> void:
 func _render_tilemap() -> void:
 	if _tilemap == null:
 		return
-	# Clear all existing cells
-	for x in range(MAP_SIZE):
-		for y in range(MAP_SIZE):
-			_tilemap.set_cell(Vector2i(x, y),0,Vector2i(22,0))
-
-	# Fill according to map
 	for x in range(MAP_SIZE):
 		for y in range(MAP_SIZE):
 			var cell = map[x][y]
@@ -88,16 +83,15 @@ func _render_tilemap() -> void:
 						coords = Vector2i(30,4)
 				CellKind.STAIRS:
 					coords = Vector2i(24,0)
-			
-			_tilemap.set_cell(Vector2i(x, y), 0, coords)
-
-	# draw player on top by setting its tile
+			if y < 9 || map_level > 1:
+				_tilemap.set_cell(Vector2i(x, y), 0, coords)
 	var p = player["pos"]
 	_player_sprite.position = Vector2(p.x * CELL + 1, p.y * CELL + 1)
 
 func _init_map():
 	# initialize blank map
 	map = []
+	map_level += 1
 	for x in range(MAP_SIZE):
 		map.append([])
 		for y in range(MAP_SIZE):

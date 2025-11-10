@@ -6,6 +6,8 @@ A simple rogue-like magic tower game developed using Godot.
 * Map: obstacles, monsters, items, stairs
 * Player: move, fight
 * Simple UI and animations
+* TODO:
+  - Endless mode
 
 ## About
 * Program: Snowy

@@ -3,8 +3,8 @@
 A simple rogue-like magic tower game developed using Godot.
 
 ## Features
-* Map: obstacles, monsters, items, stairs
-* Player: move, fight
+* Map: obstacles, items, monsters, stairs
+* Player: move, pick up, fight
 * Simple UI and animations
 * TODO:
   - Endless mode
